@@ -4,23 +4,28 @@
     <meta charset="UTF-8">
     <title>index</title>
 </head>
+
 <body>
-    {% if latest_question_list %}
-        <ul>
+{% if latest_question_list %}
+    <ul>
         {% for question in latest_question_list %}
-            <!-- it's hard code! we don't like that. -->
-<!--            <li><a href="/polls/{{ question.id }}/">{{ question.question_text }}</a></li>-->
+            {% comment %}
+            {# it's hard code! we don't like that. #}
+            <li><a href="/polls/{{ question.id }}/">{{ question.question_text }}</a></li>
+            {% endcomment %}
 
-            <!-- the 'detail' is indicated the name attribute in url.py -->
-<!--            <li><a href="{% url 'detail' question.id %}">{{ question.question_text }}</a></li>-->
+            {% comment %}
+            {# the 'detail' is indicated the name attribute in url.py #}
+            <li><a href="{% url 'detail' question.id %}">{{ question.question_text }}</a></li>
+            {% endcomment %}
 
-            <!-- with app namespace -->
+            {# with app namespace #}
             <li><a href="{% url 'polls:detail' question.id %}">{{ question.question_text }}</a></li>
-
         {% endfor %}
-        </ul>
-    {% else %}
-        <p>No polls are available.</p>
-    {% endif %}
+    </ul>
+{% else %}
+    <p>No polls are available.</p>
+{% endif %}
 </body>
+
 </html>
